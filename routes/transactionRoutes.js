@@ -1,0 +1,10 @@
+import express from "express";
+import Transaction from "../controllers/transactionController.js";
+import { authenticateToken } from "../middlewares/authMiddleware.js";
+const router = express.Router();
+router.get("/", authenticateToken, Transaction.getAll);
+router.get("/:id", authenticateToken, Transaction.getDetail);
+router.post("/", authenticateToken, Transaction.create);
+router.put("/:id", authenticateToken, Transaction.update);
+router.delete("/:id", authenticateToken, Transaction.delete);
+export default router;

@@ -1,0 +1,10 @@
+import express from "express";
+import menuController from "../controllers/menuController.js";
+import { authenticateToken } from "../middlewares/authMiddleware.js";
+const router = express.Router();
+router.get("/", authenticateToken, menuController.getAll);
+router.get("/:id", authenticateToken, menuController.getDetail);
+router.post("/", authenticateToken, menuController.create);
+router.put("/:id", authenticateToken, menuController.update);
+router.delete("/:id", authenticateToken, menuController.delete);
+export default router;
